@@ -4,6 +4,7 @@ import { Hero } from "@/components/landing/Hero";
 import { Gallery } from "@/components/landing/Gallery";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { About } from "@/components/landing/About";
+import { Faq } from "@/components/landing/Faq";
 import { RequestForm } from "@/components/landing/RequestForm";
 import { Footer } from "@/components/landing/Footer";
 
@@ -37,6 +38,7 @@ function LandingPage() {
       <Gallery />
       <HowItWorks />
       <About />
+      <Faq />
       <RequestForm />
       <Footer />
     </main>
