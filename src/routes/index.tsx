@@ -1,26 +1,42 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Navbar } from "@/components/landing/Navbar";
+import { Hero } from "@/components/landing/Hero";
+import { Gallery } from "@/components/landing/Gallery";
+import { HowItWorks } from "@/components/landing/HowItWorks";
+import { RequestForm } from "@/components/landing/RequestForm";
+import { Footer } from "@/components/landing/Footer";
 
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "EasyBuild SV — Ristrutturazioni a Savona senza pensieri" },
+      {
+        name: "description",
+        content:
+          "Impresa edile a Savona. Un unico referente per la tua ristrutturazione, dalla prima idea alla consegna. Richiedi un sopralluogo gratuito.",
+      },
+      { property: "og:title", content: "EasyBuild SV — Ristrutturare casa senza impazzire" },
+      {
+        property: "og:description",
+        content:
+          "Un unico referente. Dalla tua idea alla casa finita. Ristrutturazioni residenziali e commerciali nella provincia di Savona.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: LandingPage,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function LandingPage() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main>
+      <Navbar />
+      <Hero />
+      <Gallery />
+      <HowItWorks />
+      <RequestForm />
+      <Footer />
+    </main>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
