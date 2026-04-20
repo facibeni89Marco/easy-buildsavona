@@ -22,7 +22,7 @@ export function Hero() {
       <div className="mx-auto flex min-h-[88vh] max-w-6xl flex-col items-start justify-center px-6 py-24 sm:py-32 lg:px-8">
         <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground backdrop-blur">
           <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-          EasyBuild SV · Cairo Montenotte
+          EasyBuild SV · Savona
         </span>
 
         <h1 className="font-display max-w-3xl text-5xl font-semibold leading-[1.05] text-foreground sm:text-6xl lg:text-7xl">

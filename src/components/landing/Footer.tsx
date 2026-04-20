@@ -75,7 +75,7 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col items-start justify-between gap-3 border-t border-white/10 pt-6 text-xs text-surface-dark-foreground/60 sm:flex-row sm:items-center">
           <p>© {new Date().getFullYear()} EasyBuild SRL — Tutti i diritti riservati.</p>
-          <p>Cairo Montenotte (SV) · Italia</p>
+          <p>Savona (SV) · Italia</p>
         </div>
       </div>
 

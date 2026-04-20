@@ -28,7 +28,7 @@ const testimonials = [
     quote:
       "Hanno rifatto tutto l'appartamento mentre lavoravo. Una sola persona di riferimento per ogni cosa: una pace. Consigliatissimi.",
     name: "Davide R.",
-    place: "Cairo Montenotte",
+    place: "Savona",
   },
   {
     quote:
@@ -51,7 +51,7 @@ export function About() {
             Due amici, <span className="italic">una promessa.</span>
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            EasyBuild nasce a Cairo Montenotte dall'esperienza di Matteo e Amedeo,
+            EasyBuild nasce a Savona dall'esperienza di Matteo e Amedeo,
             due amici cresciuti in cantiere fin da ragazzi. Dopo anni a lavorare in altre imprese,
             hanno deciso di metterci la faccia: un'unica persona che ti segue,
             preventivi chiari e nessuna sorpresa a fine lavori.
