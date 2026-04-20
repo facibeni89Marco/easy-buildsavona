@@ -1,7 +1,18 @@
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight, MessageCircle, Phone } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-const WHATSAPP_URL = "https://wa.me/393486724100";
+const WHATSAPP_AMEDEO = "https://wa.me/393486724100";
+const WHATSAPP_MATTEO = "https://wa.me/393889524225";
+const TEL_AMEDEO = "tel:+393486724100";
+const TEL_MATTEO = "tel:+393889524225";
 
 export function Hero() {
   return (
@@ -43,15 +54,42 @@ export function Hero() {
             Richiedi un sopralluogo
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </a>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card px-7 py-4 text-base font-semibold text-foreground transition-colors hover:border-foreground/30 hover:bg-muted"
-          >
-            <MessageCircle className="h-4 w-4 text-whatsapp" />
-            Scrivici su WhatsApp
-          </a>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card px-7 py-4 text-base font-semibold text-foreground transition-colors hover:border-foreground/30 hover:bg-muted">
+              <MessageCircle className="h-4 w-4 text-whatsapp" />
+              Contattaci direttamente
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-64">
+              <DropdownMenuLabel>Matteo Magliano</DropdownMenuLabel>
+              <DropdownMenuItem asChild>
+                <a href={WHATSAPP_MATTEO} target="_blank" rel="noopener noreferrer" className="flex cursor-pointer items-center gap-2">
+                  <MessageCircle className="h-4 w-4 text-whatsapp" />
+                  WhatsApp · 388 952 4225
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a href={TEL_MATTEO} className="flex cursor-pointer items-center gap-2">
+                  <Phone className="h-4 w-4 text-primary" />
+                  Chiama · 388 952 4225
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuLabel>Amedeo Carlone</DropdownMenuLabel>
+              <DropdownMenuItem asChild>
+                <a href={WHATSAPP_AMEDEO} target="_blank" rel="noopener noreferrer" className="flex cursor-pointer items-center gap-2">
+                  <MessageCircle className="h-4 w-4 text-whatsapp" />
+                  WhatsApp · 348 672 4100
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a href={TEL_AMEDEO} className="flex cursor-pointer items-center gap-2">
+                  <Phone className="h-4 w-4 text-primary" />
+                  Chiama · 348 672 4100
+                </a>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
       </div>
