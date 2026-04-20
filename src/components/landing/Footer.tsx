@@ -1,4 +1,5 @@
 import { MessageCircle, Mail, Phone, MapPin } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 const WHATSAPP_URL = "https://wa.me/393486724100";
 
@@ -55,19 +56,19 @@ export function Footer() {
               <li>Easybuild SRL</li>
               <li>P.IVA 0000000000</li>
               <li>
-                <a href="#privacy" className="underline-offset-4 hover:text-white hover:underline">
+                <Link to="/privacy" className="underline-offset-4 hover:text-white hover:underline">
                   Informativa privacy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#cookie" className="underline-offset-4 hover:text-white hover:underline">
+                <Link to="/cookie" className="underline-offset-4 hover:text-white hover:underline">
                   Cookie policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#termini" className="underline-offset-4 hover:text-white hover:underline">
+                <Link to="/termini" className="underline-offset-4 hover:text-white hover:underline">
                   Termini e condizioni
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
