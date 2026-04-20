@@ -26,7 +26,19 @@ export function Footer() {
             <ul className="mt-5 space-y-3 text-sm text-surface-dark-foreground/80">
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                Via Montenotte 7, Savona (SV) — 17100
+                <span>
+                  Sede legale: Via Paolo Gerolamo Brusco 1/4, Savona (SV) — 17100
+                  <br />
+                  <span className="text-surface-dark-foreground/60">
+                    Magazzino: Via Padova 14E, Savona (SV) — 17100
+                  </span>
+                </span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Mail className="h-4 w-4 shrink-0 text-primary" />
+                <a href="mailto:easy.buildsrl@pec.it" className="hover:text-white">
+                  easy.buildsrl@pec.it
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 shrink-0 text-primary" />
@@ -53,8 +65,10 @@ export function Footer() {
           <div>
             <h3 className="font-display text-lg font-semibold">Legale</h3>
             <ul className="mt-5 space-y-3 text-sm text-surface-dark-foreground/80">
-              <li>Easybuild SRL</li>
-              <li>P.IVA 0000000000</li>
+              <li>Easy Build S.R.L.</li>
+              <li>P.IVA / C.F. 01893670099</li>
+              <li>REA SV-238468 · Albo Artigiani SV-62950</li>
+              <li>Capitale sociale € 10.000,00 i.v.</li>
               <li>
                 <Link to="/privacy" className="underline-offset-4 hover:text-white hover:underline">
                   Informativa privacy

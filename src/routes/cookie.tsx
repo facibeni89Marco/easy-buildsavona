@@ -8,7 +8,7 @@ export const Route = createFileRoute("/cookie")({
       {
         name: "description",
         content:
-          "Cookie policy di EasyBuild SRL: tipologie di cookie utilizzati e modalità di gestione del consenso.",
+          "Cookie policy di Easy Build S.R.L.: tipologie di cookie utilizzati e modalità di gestione del consenso.",
       },
     ],
   }),
@@ -20,8 +20,8 @@ function CookiePage() {
     <LegalLayout title="Cookie Policy" updatedAt="20 aprile 2026">
       <p>
         Questa Cookie Policy descrive le tipologie di cookie e tecnologie similari
-        utilizzate dal sito di EasyBuild SRL e fornisce informazioni su come gestirne le
-        preferenze.
+        utilizzate dal sito di Easy Build S.R.L. (P.IVA 01893670099, Via Paolo Gerolamo
+        Brusco 1/4, 17100 Savona) e fornisce informazioni su come gestirne le preferenze.
       </p>
 
       <h2>1. Cosa sono i cookie</h2>
@@ -71,7 +71,8 @@ function CookiePage() {
       <h2>4. Contatti</h2>
       <p>
         Per qualsiasi domanda relativa alla presente Cookie Policy puoi scrivere a{" "}
-        <a href="mailto:easybuild.savona@gmail.com">easybuild.savona@gmail.com</a>.
+        <a href="mailto:easybuild.savona@gmail.com">easybuild.savona@gmail.com</a> oppure
+        via PEC a <a href="mailto:easy.buildsrl@pec.it">easy.buildsrl@pec.it</a>.
       </p>
     </LegalLayout>
   );

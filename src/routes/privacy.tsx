@@ -8,7 +8,7 @@ export const Route = createFileRoute("/privacy")({
       {
         name: "description",
         content:
-          "Informativa sul trattamento dei dati personali ai sensi del Regolamento UE 2016/679 (GDPR) di EasyBuild SRL.",
+          "Informativa sul trattamento dei dati personali ai sensi del Regolamento UE 2016/679 (GDPR) di Easy Build S.R.L.",
       },
     ],
   }),
@@ -26,8 +26,12 @@ function PrivacyPage() {
 
       <h2>1. Titolare del trattamento</h2>
       <p>
-        Il titolare del trattamento è <strong>EasyBuild SRL</strong>, con sede in Via
-        Montenotte 7, 17100 Savona (SV) — P.IVA 0000000000.
+        Il titolare del trattamento è <strong>Easy Build S.R.L.</strong>, con sede legale
+        in Via Paolo Gerolamo Brusco 1/4, 17100 Savona (SV).
+        <br />
+        P.IVA / Codice Fiscale: 01893670099 — REA: SV-238468 — Albo Imprese Artigiane: SV-62950
+        <br />
+        PEC: <a href="mailto:easy.buildsrl@pec.it">easy.buildsrl@pec.it</a>
         <br />
         Email: <a href="mailto:easybuild.savona@gmail.com">easybuild.savona@gmail.com</a>
         <br />
