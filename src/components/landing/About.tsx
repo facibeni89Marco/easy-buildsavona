@@ -48,11 +48,11 @@ export function About() {
             Chi siamo
           </p>
           <h2 className="font-display mt-3 text-4xl font-semibold text-foreground sm:text-5xl">
-            Due fratelli, <span className="italic">una promessa.</span>
+            Due amici, <span className="italic">una promessa.</span>
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
             EasyBuild nasce a Cairo Montenotte dall'esperienza di Matteo e Amedeo,
-            cresciuti in cantiere fin da ragazzi. Dopo anni a lavorare in altre imprese,
+            due amici cresciuti in cantiere fin da ragazzi. Dopo anni a lavorare in altre imprese,
             hanno deciso di metterci la faccia: un'unica persona che ti segue,
             preventivi chiari e nessuna sorpresa a fine lavori.
           </p>
