@@ -1,7 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 
-const RECIPIENT = "easybuild.savona@gmail.com";
+// TEMPORANEO: dominio easybuildsavona.it in fase di verifica su Resend.
+// Resend in modalità test consente l'invio solo all'email del proprietario account.
+// Le richieste vengono inoltrate a facibeni.89@gmail.com con Reply-To = easybuild.savona@gmail.com
+// così nessuna richiesta viene persa. Una volta verificato il dominio,
+// reimpostare RECIPIENT su "easybuild.savona@gmail.com".
+const RECIPIENT = "facibeni.89@gmail.com";
+const FORWARD_TO = "easybuild.savona@gmail.com";
 
 const schema = z.object({
   workType: z.string().min(1).max(50),
