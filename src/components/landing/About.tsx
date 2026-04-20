@@ -4,16 +4,16 @@ import amedeo from "@/assets/founder-amedeo.jpg";
 
 const founders = [
   {
-    name: "Matteo",
-    role: "Co-fondatore · Cantieri",
+    name: "Matteo Magliano",
+    role: "Co-fondatore & Amministratore · Cantieri",
     img: matteo,
-    bio: "Cresciuto tra i cantieri di famiglia, segue ogni lavoro in prima persona. Il tuo referente quando si parla di tempi, materiali e squadre.",
+    bio: "Savonese doc, cresciuto tra i cantieri di famiglia. Segue ogni lavoro in prima persona ed è il tuo referente quando si parla di tempi, materiali e squadre.",
   },
   {
-    name: "Amedeo",
-    role: "Co-fondatore · Progetti",
+    name: "Amedeo Carlone",
+    role: "Co-fondatore & Amministratore · Progetti",
     img: amedeo,
-    bio: "Si occupa di progettazione, preventivi e rapporto con il cliente. Trasforma le tue idee in un piano chiaro, prima ancora di iniziare.",
+    bio: "Si occupa di progettazione, preventivi e rapporto con il cliente. Trasforma le tue idee in un piano chiaro e dettagliato, prima ancora di iniziare i lavori.",
   },
 ];
 
@@ -51,10 +51,11 @@ export function About() {
             Due amici, <span className="italic">una promessa.</span>
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            EasyBuild nasce a Savona dall'esperienza di Matteo e Amedeo,
-            due amici cresciuti in cantiere fin da ragazzi. Dopo anni a lavorare in altre imprese,
-            hanno deciso di metterci la faccia: un'unica persona che ti segue,
-            preventivi chiari e nessuna sorpresa a fine lavori.
+            Easy Build S.R.L. nasce a Savona nel gennaio 2024 dall'esperienza di
+            Matteo Magliano e Amedeo Carlone, due amici cresciuti in cantiere fin da
+            ragazzi. Dopo anni a lavorare in altre imprese, hanno deciso di metterci
+            la faccia: impresa artigiana iscritta all'Albo (SV-62950), un unico
+            referente che ti segue, preventivi chiari e nessuna sorpresa a fine lavori.
           </p>
         </div>
 
