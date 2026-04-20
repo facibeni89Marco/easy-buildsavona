@@ -51,6 +51,12 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-3">
+                <Phone className="h-4 w-4 shrink-0 text-primary" />
+                <a href="https://wa.me/393889524225" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                  Matteo — +39 388 952 4225
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 shrink-0 text-primary" />
                 <a href="mailto:easybuild.savona@gmail.com" className="hover:text-white">
                   easybuild.savona@gmail.com
