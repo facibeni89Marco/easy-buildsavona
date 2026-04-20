@@ -100,9 +100,35 @@ export function RequestForm() {
 
   const goPrev = () => setStep(Math.max(0, step - 1));
 
-  const onSubmit = (data: FormValues) => {
-    // Placeholder: in produzione i dati vengono inviati via Make/Zapier → email + Calendly
-    setSubmitted(data);
+  const onSubmit = async (data: FormValues) => {
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      const res = await fetch("/api/send-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          workType: data.workType,
+          propertyType: data.propertyType,
+          zone: data.zone,
+          timing: data.timing,
+          fullName: data.fullName,
+          phone: data.phone,
+          email: data.email,
+        }),
+      });
+      if (!res.ok) {
+        throw new Error("send_failed");
+      }
+      setSubmitted(data);
+    } catch (err) {
+      console.error(err);
+      setSubmitError(
+        "Si è verificato un errore nell'invio. Riprova o contattaci direttamente al telefono.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
