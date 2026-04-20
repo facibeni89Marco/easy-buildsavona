@@ -35,7 +35,7 @@ function PrivacyPage() {
         <br />
         Email: <a href="mailto:easybuild.savona@gmail.com">easybuild.savona@gmail.com</a>
         <br />
-        Telefono / WhatsApp: 348 672 4100
+        Telefono / WhatsApp: Amedeo 348 672 4100 — Matteo +39 388 952 4225
       </p>
 
       <h2>2. Tipologie di dati trattati</h2>
