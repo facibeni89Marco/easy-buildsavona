@@ -92,8 +92,9 @@ export const Route = createFileRoute("/api/send-request")({
             body: JSON.stringify({
               from: "EasyBuild <onboarding@resend.dev>",
               to: [RECIPIENT],
+              cc: [FORWARD_TO],
               reply_to: data.email,
-              subject: `Nuova richiesta sopralluogo — ${data.fullName}`,
+              subject: `[EasyBuild] Nuova richiesta sopralluogo — ${data.fullName}`,
               html,
             }),
           });
