@@ -1,13 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 
-// TEMPORANEO: dominio easybuildsavona.it in fase di verifica su Resend.
-// Resend in modalità test consente l'invio solo all'email del proprietario account.
-// Le richieste vengono inoltrate a facibeni.89@gmail.com con Reply-To = easybuild.savona@gmail.com
-// così nessuna richiesta viene persa. Una volta verificato il dominio,
-// reimpostare RECIPIENT su "easybuild.savona@gmail.com".
-const RECIPIENT = "facibeni.89@gmail.com";
-const FORWARD_TO = "easybuild.savona@gmail.com";
+const MAKE_WEBHOOK_URL =
+  "https://hook.eu1.make.com/eg2wad5xvkojzk3n8rkfimluoi3du2yj";
 
 const schema = z.object({
   workType: z.string().min(1).max(50),
@@ -49,60 +44,37 @@ export const Route = createFileRoute("/api/send-request")({
           const body = await request.json();
           const data = schema.parse(body);
 
-          const apiKey = process.env.RESEND_API_KEY;
-          if (!apiKey) {
-            console.error("RESEND_API_KEY missing");
-            return new Response(
-              JSON.stringify({ error: "Email service not configured" }),
-              { status: 500, headers: { "Content-Type": "application/json" } },
-            );
-          }
-
           const workLabel = labels.workType[data.workType] ?? data.workType;
-          const propLabel = labels.propertyType[data.propertyType] ?? data.propertyType;
+          const propLabel =
+            labels.propertyType[data.propertyType] ?? data.propertyType;
           const timingLabel = labels.timing[data.timing] ?? data.timing;
 
-          const html = `
-            <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:24px;color:#1a1a1a">
-              <h2 style="color:#0a4d3a;margin:0 0 16px">Nuova richiesta di sopralluogo</h2>
-              <p style="color:#555;margin:0 0 24px">Hai ricevuto una nuova richiesta dal sito EasyBuild.</p>
+          const payload = {
+            fullName: data.fullName,
+            phone: data.phone,
+            email: data.email,
+            workType: data.workType,
+            workTypeLabel: workLabel,
+            propertyType: data.propertyType,
+            propertyTypeLabel: propLabel,
+            zone: data.zone,
+            timing: data.timing,
+            timingLabel: timingLabel,
+            submittedAt: new Date().toISOString(),
+            source: "EasyBuild Savona — sito web",
+          };
 
-              <table style="width:100%;border-collapse:collapse;margin-bottom:24px">
-                <tr><td style="padding:10px;background:#f5f5f5;font-weight:bold;width:40%">Nome e cognome</td><td style="padding:10px;background:#f5f5f5">${escapeHtml(data.fullName)}</td></tr>
-                <tr><td style="padding:10px;font-weight:bold">Telefono</td><td style="padding:10px"><a href="tel:${escapeHtml(data.phone)}">${escapeHtml(data.phone)}</a></td></tr>
-                <tr><td style="padding:10px;background:#f5f5f5;font-weight:bold">Email</td><td style="padding:10px;background:#f5f5f5"><a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></td></tr>
-                <tr><td style="padding:10px;font-weight:bold">Tipo di lavoro</td><td style="padding:10px">${escapeHtml(workLabel)}</td></tr>
-                <tr><td style="padding:10px;background:#f5f5f5;font-weight:bold">Tipo di immobile</td><td style="padding:10px;background:#f5f5f5">${escapeHtml(propLabel)}</td></tr>
-                <tr><td style="padding:10px;font-weight:bold">Zona</td><td style="padding:10px">${escapeHtml(data.zone)}</td></tr>
-                <tr><td style="padding:10px;background:#f5f5f5;font-weight:bold">Tempistiche</td><td style="padding:10px;background:#f5f5f5">${escapeHtml(timingLabel)}</td></tr>
-              </table>
-
-              <p style="color:#888;font-size:12px;margin-top:32px;border-top:1px solid #eee;padding-top:16px">
-                Email automatica generata dal form di richiesta sopralluogo del sito EasyBuild.
-              </p>
-            </div>
-          `;
-
-          const res = await fetch("https://api.resend.com/emails", {
+          const res = await fetch(MAKE_WEBHOOK_URL, {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${apiKey}`,
-            },
-            body: JSON.stringify({
-              from: "EasyBuild <onboarding@resend.dev>",
-              to: [RECIPIENT],
-              reply_to: data.email,
-              subject: `[EasyBuild → inoltrare a ${FORWARD_TO}] Nuova richiesta sopralluogo — ${data.fullName}`,
-              html,
-            }),
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
           });
 
           if (!res.ok) {
             const errText = await res.text();
-            console.error("Resend error:", res.status, errText);
+            console.error("Make webhook error:", res.status, errText);
             return new Response(
-              JSON.stringify({ error: "Failed to send email" }),
+              JSON.stringify({ error: "Failed to send request" }),
               { status: 502, headers: { "Content-Type": "application/json" } },
             );
           }
@@ -128,12 +100,3 @@ export const Route = createFileRoute("/api/send-request")({
     },
   },
 });
-
-function escapeHtml(s: string): string {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
