@@ -75,6 +75,8 @@ const steps: StepKey[] = ["workType", "propertyType", "zone", "timing", "contact
 export function RequestForm() {
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState<FormValues | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
@@ -82,7 +84,7 @@ export function RequestForm() {
     defaultValues: { zone: "", fullName: "", phone: "", email: "" },
   });
 
-  const { register, handleSubmit, trigger, watch, formState: { errors } } = form;
+  const { register, handleSubmit, trigger, formState: { errors } } = form;
 
   const goNext = async () => {
     const fieldsForStep: Record<StepKey, (keyof FormValues)[]> = {
@@ -98,9 +100,35 @@ export function RequestForm() {
 
   const goPrev = () => setStep(Math.max(0, step - 1));
 
-  const onSubmit = (data: FormValues) => {
-    // Placeholder: in produzione i dati vengono inviati via Make/Zapier → email + Calendly
-    setSubmitted(data);
+  const onSubmit = async (data: FormValues) => {
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      const res = await fetch("/api/send-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          workType: data.workType,
+          propertyType: data.propertyType,
+          zone: data.zone,
+          timing: data.timing,
+          fullName: data.fullName,
+          phone: data.phone,
+          email: data.email,
+        }),
+      });
+      if (!res.ok) {
+        throw new Error("send_failed");
+      }
+      setSubmitted(data);
+    } catch (err) {
+      console.error(err);
+      setSubmitError(
+        "Si è verificato un errore nell'invio. Riprova o contattaci direttamente al telefono.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -340,13 +368,19 @@ export function RequestForm() {
             ) : (
               <button
                 type="submit"
-                className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow-cta transition-all hover:translate-y-[-1px] hover:bg-primary/90"
+                disabled={submitting}
+                className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow-cta transition-all hover:translate-y-[-1px] hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
               >
-                Invia richiesta
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                {submitting ? "Invio in corso..." : "Invia richiesta"}
+                {!submitting && (
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                )}
               </button>
             )}
           </div>
+          {submitError && (
+            <p className="mt-4 text-center text-sm text-destructive">{submitError}</p>
+          )}
         </form>
       </div>
     </section>
