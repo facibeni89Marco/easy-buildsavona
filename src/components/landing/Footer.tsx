@@ -30,6 +30,10 @@ export function Footer() {
                   Sede legale: Via Paolo Gerolamo Brusco 1/4, Savona (SV) — 17100
                   <br />
                   <span className="text-surface-dark-foreground/60">
+                    Sede commerciale: Via XX Settembre 74r, Savona (SV) — 17100
+                  </span>
+                  <br />
+                  <span className="text-surface-dark-foreground/60">
                     Magazzino: Via Padova 14E, Savona (SV) — 17100
                   </span>
                 </span>
@@ -42,7 +46,9 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 shrink-0 text-primary" />
-                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white">348 672 4100</a>
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                  Amedeo — 348 672 4100
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 shrink-0 text-primary" />
