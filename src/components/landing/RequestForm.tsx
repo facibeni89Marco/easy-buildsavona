@@ -368,13 +368,19 @@ export function RequestForm() {
             ) : (
               <button
                 type="submit"
-                className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow-cta transition-all hover:translate-y-[-1px] hover:bg-primary/90"
+                disabled={submitting}
+                className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow-cta transition-all hover:translate-y-[-1px] hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
               >
-                Invia richiesta
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                {submitting ? "Invio in corso..." : "Invia richiesta"}
+                {!submitting && (
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                )}
               </button>
             )}
           </div>
+          {submitError && (
+            <p className="mt-4 text-center text-sm text-destructive">{submitError}</p>
+          )}
         </form>
       </div>
     </section>
