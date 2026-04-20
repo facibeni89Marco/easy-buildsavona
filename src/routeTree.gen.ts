@@ -13,6 +13,7 @@ import { Route as TerminiRouteImport } from './routes/termini'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as CookieRouteImport } from './routes/cookie'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiSendRequestRouteImport } from './routes/api/send-request'
 
 const TerminiRoute = TerminiRouteImport.update({
   id: '/termini',
@@ -34,18 +35,25 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiSendRequestRoute = ApiSendRequestRouteImport.update({
+  id: '/api/send-request',
+  path: '/api/send-request',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cookie': typeof CookieRoute
   '/privacy': typeof PrivacyRoute
   '/termini': typeof TerminiRoute
+  '/api/send-request': typeof ApiSendRequestRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cookie': typeof CookieRoute
   '/privacy': typeof PrivacyRoute
   '/termini': typeof TerminiRoute
+  '/api/send-request': typeof ApiSendRequestRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,20 @@ export interface FileRoutesById {
   '/cookie': typeof CookieRoute
   '/privacy': typeof PrivacyRoute
   '/termini': typeof TerminiRoute
+  '/api/send-request': typeof ApiSendRequestRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cookie' | '/privacy' | '/termini'
+  fullPaths: '/' | '/cookie' | '/privacy' | '/termini' | '/api/send-request'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cookie' | '/privacy' | '/termini'
-  id: '__root__' | '/' | '/cookie' | '/privacy' | '/termini'
+  to: '/' | '/cookie' | '/privacy' | '/termini' | '/api/send-request'
+  id:
+    | '__root__'
+    | '/'
+    | '/cookie'
+    | '/privacy'
+    | '/termini'
+    | '/api/send-request'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +82,7 @@ export interface RootRouteChildren {
   CookieRoute: typeof CookieRoute
   PrivacyRoute: typeof PrivacyRoute
   TerminiRoute: typeof TerminiRoute
+  ApiSendRequestRoute: typeof ApiSendRequestRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +115,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/send-request': {
+      id: '/api/send-request'
+      path: '/api/send-request'
+      fullPath: '/api/send-request'
+      preLoaderRoute: typeof ApiSendRequestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,7 +130,17 @@ const rootRouteChildren: RootRouteChildren = {
   CookieRoute: CookieRoute,
   PrivacyRoute: PrivacyRoute,
   TerminiRoute: TerminiRoute,
+  ApiSendRequestRoute: ApiSendRequestRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}

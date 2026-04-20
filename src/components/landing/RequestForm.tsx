@@ -75,6 +75,8 @@ const steps: StepKey[] = ["workType", "propertyType", "zone", "timing", "contact
 export function RequestForm() {
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState<FormValues | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
@@ -82,7 +84,7 @@ export function RequestForm() {
     defaultValues: { zone: "", fullName: "", phone: "", email: "" },
   });
 
-  const { register, handleSubmit, trigger, watch, formState: { errors } } = form;
+  const { register, handleSubmit, trigger, formState: { errors } } = form;
 
   const goNext = async () => {
     const fieldsForStep: Record<StepKey, (keyof FormValues)[]> = {
