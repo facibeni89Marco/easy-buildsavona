@@ -54,20 +54,6 @@ export function Hero() {
           </a>
         </div>
 
-        <dl className="mt-16 grid w-full max-w-2xl grid-cols-3 gap-6 border-t border-border pt-8">
-          <div>
-            <dt className="text-xs uppercase tracking-wider text-muted-foreground">Esperienza</dt>
-            <dd className="font-display mt-1 text-2xl font-semibold text-foreground">15+ anni</dd>
-          </div>
-          <div>
-            <dt className="text-xs uppercase tracking-wider text-muted-foreground">Cantieri</dt>
-            <dd className="font-display mt-1 text-2xl font-semibold text-foreground">200+</dd>
-          </div>
-          <div>
-            <dt className="text-xs uppercase tracking-wider text-muted-foreground">Zona</dt>
-            <dd className="font-display mt-1 text-2xl font-semibold text-foreground">Savona</dd>
-          </div>
-        </dl>
       </div>
     </section>
   );
